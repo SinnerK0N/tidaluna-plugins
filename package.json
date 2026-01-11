@@ -1,0 +1,32 @@
+{
+	"name": "@sinnerk0n/tidaluna-plugins",
+	"description": "Plugins for TidaLuna",
+	"type": "module",
+	"author": {
+		"name": "SinnerK0N",
+		"url": "https://github.com/SinnerK0N",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/64489962?v=4"
+	},
+	"homepage": "https://github.com/SinnerK0N/tidaluna-plugins",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SinnerK0N/tidaluna-plugins.git"
+	},
+	"scripts": {
+		"watch": "concurrently \"pnpm:build --watch\" pnpm:serve",
+		"build": "rimraf ./dist && tsx esbuild.config.ts",
+		"serve": "http-server ./dist -p 3000 -s --cors -c-1"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.29",
+		"@types/react": "^19.1.6",
+		"@types/react-dom": "^19.1.5",
+		"concurrently": "^9.1.2",
+		"http-server": "^14.1.1",
+		"luna": "github:Inrixia/TidaLuna#81369c7",
+		"oby": "^15.1.2",
+		"rimraf": "^6.0.1",
+		"tsx": "^4.19.4",
+		"typescript": "^5.8.3"
+	}
+}

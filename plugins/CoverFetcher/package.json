@@ -1,0 +1,11 @@
+{
+	"name": "@sinnerk0n/cover-fetcher",
+	"description": "Download cover art or copy cover art link for songs and albums",
+	"author": {
+		"name": "SinnerK0N",
+		"url": "https://github.com/SinnerK0N",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/64489962?v=4"
+	},
+	"main": "./src/index.ts",
+	"type": "module"
+}
