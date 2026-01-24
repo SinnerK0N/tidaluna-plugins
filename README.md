@@ -17,3 +17,12 @@ Both options are available when right-clicking on:
 - Albums
 
 The plugin automatically selects the highest resolution available for each cover.
+
+### UpNext
+A plugin that shows the song which will be played next.
+
+#### Features
+
+- Display the next song
+- Toggle displaying the artist of the next song
+- Toggle displaying the cover art of the next song
