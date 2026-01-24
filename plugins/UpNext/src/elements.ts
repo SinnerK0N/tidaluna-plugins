@@ -10,6 +10,7 @@ export interface UpNextElements
 	cover: HTMLImageElement;
 	title: HTMLSpanElement;
 	artist: HTMLSpanElement;
+	injected: boolean;
 }
 
 export function createElements(unloads: Set<LunaUnload>): UpNextElements
@@ -42,20 +43,39 @@ export function createElements(unloads: Set<LunaUnload>): UpNextElements
 	container.appendChild(cover);
 	container.appendChild(track);
 
-	return { container, label, cover, title, artist };
+	return { container, label, cover, title, artist, injected: false };
 }
 
-export async function injectContainer(unloads: Set<LunaUnload>, container: HTMLElement): Promise<void>
+export function tryInjectContainer(elements: UpNextElements): boolean
 {
-	const playbackContainer = await observePromise<HTMLElement>(unloads, `[class*="_playbackControlsContainer_"]`);
-	if (playbackContainer == null)
-		throw new Error("Failed to find playback controls container element!");
+	if (elements.injected) return true;
+
+	const playbackContainer = document.querySelector<HTMLElement>(`[class*="_playbackControlsContainer_"]`);
+	if (!playbackContainer) return false;
 
 	const parentElement = playbackContainer.parentElement;
-	if (parentElement == null)
-		throw new Error("Failed to find playback controls container parent element!");
+	if (!parentElement) return false;
 
-	parentElement.insertBefore(container, playbackContainer);
+	parentElement.insertBefore(elements.container, playbackContainer);
+	elements.injected = true;
+	return true;
+}
+
+export function startContainerObserver(unloads: Set<LunaUnload>, elements: UpNextElements, onInjected: () => void): void
+{
+	if (tryInjectContainer(elements))
+	{
+		onInjected();
+		return;
+	}
+
+	observePromise<HTMLElement>(unloads, `[class*="_playbackControlsContainer_"]`)
+		.then(() =>
+		{
+			if (tryInjectContainer(elements))
+				onInjected();
+		})
+		.catch(() => {});
 }
 
 export async function updateDisplay(elements: UpNextElements): Promise<boolean>

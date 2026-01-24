@@ -2,7 +2,7 @@ import { Tracer, type LunaUnload } from "@luna/core";
 import { MediaItem, redux, StyleTag } from "@luna/lib";
 
 import styles from "file://styles.css?minify";
-import { createElements, injectContainer, updateDisplay } from "./elements";
+import { createElements, startContainerObserver, tryInjectContainer, updateDisplay } from "./elements";
 
 export const { trace, errSignal } = Tracer("[UpNext]");
 export const unloads = new Set<LunaUnload>();
@@ -19,6 +19,7 @@ export async function updateUpNext(): Promise<void>
 {
 	try
 	{
+		tryInjectContainer(elements);
 		await updateDisplay(elements);
 	}
 	catch (err)
@@ -28,9 +29,7 @@ export async function updateUpNext(): Promise<void>
 	}
 }
 
-injectContainer(unloads, elements.container)
-	.then(() => updateUpNext())
-	.catch(trace.msg.err.withContext("injectContainer"));
+startContainerObserver(unloads, elements, updateUpNext);
 
 MediaItem.onMediaTransition(unloads, () =>
 {
