@@ -1,0 +1,11 @@
+{
+	"name": "@sinnerk0n/up-next",
+	"description": "Shows the upcoming song in the player bar",
+	"author": {
+		"name": "SinnerK0N",
+		"url": "https://github.com/SinnerK0N",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/64489962?v=4"
+	},
+	"main": "./src/index.ts",
+	"type": "module"
+}
