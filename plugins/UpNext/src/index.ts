@@ -25,7 +25,7 @@ export async function updateUpNext(): Promise<void>
 	catch (err)
 	{
 		trace.msg.err.withContext("updateUpNext")(err);
-		elements.container.style.display = "none";
+		elements.container.classList.add("hidden");
 	}
 }
 

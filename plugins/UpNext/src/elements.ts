@@ -16,8 +16,7 @@ export interface UpNextElements
 export function createElements(unloads: Set<LunaUnload>): UpNextElements
 {
 	const container = document.createElement("div");
-	container.className = "upnext-container";
-	container.style.display = "none";
+	container.className = "upnext-container hidden";
 	unloads.add(() => container.remove());
 
 	const label = document.createElement("span");
@@ -50,13 +49,10 @@ export function tryInjectContainer(elements: UpNextElements): boolean
 {
 	if (elements.injected) return true;
 
-	const playbackContainer = document.querySelector<HTMLElement>(`[class*="_playbackControlsContainer_"]`);
-	if (!playbackContainer) return false;
+	const leftColumn = document.querySelector<HTMLElement>(`[data-test="left-column-footer-player"]`);
+	if (!leftColumn) return false;
 
-	const parentElement = playbackContainer.parentElement;
-	if (!parentElement) return false;
-
-	parentElement.insertBefore(elements.container, playbackContainer);
+	leftColumn.appendChild(elements.container);
 	elements.injected = true;
 	return true;
 }
@@ -69,7 +65,7 @@ export function startContainerObserver(unloads: Set<LunaUnload>, elements: UpNex
 		return;
 	}
 
-	observePromise<HTMLElement>(unloads, `[class*="_playbackControlsContainer_"]`)
+	observePromise<HTMLElement>(unloads, `[data-test="left-column-footer-player"]`)
 		.then(() =>
 		{
 			if (tryInjectContainer(elements))
@@ -85,14 +81,14 @@ export async function updateDisplay(elements: UpNextElements): Promise<boolean>
 	const nextItem = await PlayState.nextMediaItem();
 	if (!nextItem)
 	{
-		container.style.display = "none";
+		container.classList.add("hidden");
 		return false;
 	}
 
 	const trackTitle = await nextItem.title();
 	if (!trackTitle)
 	{
-		container.style.display = "none";
+		container.classList.add("hidden");
 		return false;
 	}
 
@@ -122,6 +118,6 @@ export async function updateDisplay(elements: UpNextElements): Promise<boolean>
 		cover.style.display = "none";
 	}
 
-	container.style.display = "flex";
+	container.classList.remove("hidden");
 	return true;
 }
