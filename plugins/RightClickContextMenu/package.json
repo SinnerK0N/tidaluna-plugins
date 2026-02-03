@@ -1,0 +1,11 @@
+{
+	"name": "@sinnerk0n/right-click-context-menu",
+	"description": "Allows for opening the track context menu on right-click in additional places",
+	"author": {
+		"name": "SinnerK0N",
+		"url": "https://github.com/SinnerK0N",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/64489962?v=4"
+	},
+	"main": "./src/index.ts",
+	"type": "module"
+}

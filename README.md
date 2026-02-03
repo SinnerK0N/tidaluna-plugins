@@ -26,3 +26,11 @@ A plugin that shows the song which will be played next.
 - Display the next song
 - Toggle displaying the artist of the next song
 - Toggle displaying the cover art of the next song
+
+### RightClickContextMenu
+A plugin that adds the ability to open the context menu for tracks using right click in additional places.
+
+#### Features
+
+- Open track context menu with right click in the player
+- Open track context menu with right click in albums/EPs when using the New media table feature flag
