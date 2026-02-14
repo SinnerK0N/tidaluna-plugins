@@ -44,7 +44,9 @@ redux.intercept([
 	"playQueue/ADD_NOW",
 	"playQueue/RESET",
 	"playQueue/TOGGLE_SHUFFLE",
-	"playQueue/SET_REPEAT_MODE"
+	"playQueue/SET_REPEAT_MODE",
+	"playQueue/REMOVE_ELEMENT",
+	"playQueue/ADD_STREAMABLE_ITEMS_TO_QUEUE_SUCCESS"
 ], unloads, () =>
 {
 	if (Date.now() - lastMediaTransition > COOLDOWN_MS)
