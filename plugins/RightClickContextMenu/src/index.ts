@@ -92,7 +92,7 @@ observe(unloads, `[data-test="new-media-table-row"]`, (row) =>
 {
 	attachContextMenu(row, (event) => openContextMenu(event, row));
 });
-observe(unloads, `[data-test="footer-track-title"]`, (footer) =>
+observe(unloads, `[data-test="track-info"]`, (footer) =>
 {
 	attachContextMenu(footer, (event) => openContextMenu(event, footer));
 });
