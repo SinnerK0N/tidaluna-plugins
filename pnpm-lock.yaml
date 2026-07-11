@@ -39,7 +39,13 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
+  plugins/Ampache: {}
+
   plugins/CoverFetcher: {}
+
+  plugins/RightClickContextMenu: {}
+
+  plugins/UpNext: {}
 
 packages:
 
@@ -459,7 +465,7 @@ packages:
     engines: {node: 20 || >=22}
 
   luna@https://codeload.github.com/Inrixia/TidaLuna/tar.gz/54784919afaf05d8f769db41f74f8f7b909f2c70:
-    resolution: {tarball: https://codeload.github.com/Inrixia/TidaLuna/tar.gz/54784919afaf05d8f769db41f74f8f7b909f2c70}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/Inrixia/TidaLuna/tar.gz/54784919afaf05d8f769db41f74f8f7b909f2c70}
     version: 1.9.8-beta
 
   math-intrinsics@1.1.0:
