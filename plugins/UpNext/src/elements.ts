@@ -49,7 +49,7 @@ export function tryInjectContainer(elements: UpNextElements): boolean
 {
 	if (elements.injected) return true;
 
-	const leftColumn = document.querySelector<HTMLElement>(`[data-test="left-column-footer-player"]`);
+	const leftColumn = document.querySelector<HTMLElement>(`[data-test="track-info"]`);
 	if (!leftColumn) return false;
 
 	leftColumn.appendChild(elements.container);
@@ -65,7 +65,7 @@ export function startContainerObserver(unloads: Set<LunaUnload>, elements: UpNex
 		return;
 	}
 
-	observePromise<HTMLElement>(unloads, `[data-test="left-column-footer-player"]`)
+	observePromise<HTMLElement>(unloads, `[data-test="track-info"]`)
 		.then(() =>
 		{
 			if (tryInjectContainer(elements))
